@@ -1,0 +1,15 @@
+<div class="todos-container">
+  <div *ngIf="todos.length === 0" class="empty-state">
+    <div class="empty-state-icon">📝</div>
+    <h3 class="empty-state-title">Nenhuma tarefa encontrada</h3>
+    <p class="empty-state-description">Adicione sua primeira tarefa para começar!</p>
+  </div>
+
+  <app-todo-item
+    *ngFor="let todo of todos"
+    [todo]="todo"
+    (toggle)="toggle.emit($event)"
+    (delete)="delete.emit($event)"
+    (edit)="edit.emit($event)"
+  ></app-todo-item>
+</div>

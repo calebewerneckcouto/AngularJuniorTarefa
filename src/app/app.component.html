@@ -1,0 +1,23 @@
+<div class="app-container">
+  <app-header></app-header>
+  
+  <app-statistics
+    [total]="stats.total"
+    [completed]="stats.completed"
+    [active]="stats.active"
+  ></app-statistics>
+
+  <app-add-todo-form
+    (addTodo)="onAddTodo($event)"
+    (filterChange)="onFilterChange($event)"
+  ></app-add-todo-form>
+
+  <app-todo-list
+    [todos]="filteredTodos"
+    (toggle)="onToggleTodo($event)"
+    (delete)="onDeleteTodo($event)"
+    (edit)="onEditTodo($event)"
+  ></app-todo-list>
+
+  <app-educational-footer></app-educational-footer>
+</div>

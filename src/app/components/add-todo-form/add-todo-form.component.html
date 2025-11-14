@@ -1,0 +1,46 @@
+<div class="form-container">
+  <div class="form-header">
+    <h2 class="form-title">➕ Nova Tarefa</h2>
+    <p class="form-subtitle">Adicione uma nova tarefa à sua lista</p>
+  </div>
+
+  <div class="form-content">
+    <div class="input-row">
+      <input
+        type="text"
+        [(ngModel)]="inputText"
+        (keypress)="onKeyPress($event)"
+        placeholder="Digite o nome da tarefa..."
+        class="input"
+      >
+      
+      <select [(ngModel)]="priority" class="select">
+        <option value="baixa">📗 Baixa Prioridade</option>
+        <option value="média">📒 Média Prioridade</option>
+        <option value="alta">📕 Alta Prioridade</option>
+      </select>
+      
+      <button
+        (click)="onAddTodo()"
+        [disabled]="!inputText.trim()"
+        class="add-button"
+      >
+        ➕ Adicionar
+      </button>
+    </div>
+
+    <div class="filter-section">
+      <span class="filter-label">Filtrar por:</span>
+      <div class="filter-group">
+        <button
+          *ngFor="let filtro of ['todas', 'ativas', 'concluídas']"
+          (click)="onFilterChange(filtro)"
+          [class.active]="currentFilter === filtro"
+          class="filter-button"
+        >
+          {{ filtro.charAt(0).toUpperCase() + filtro.slice(1) }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

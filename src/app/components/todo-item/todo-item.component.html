@@ -1,0 +1,33 @@
+<div class="todo-item" [class.completed]="todo.completed" [class]="getPriorityClass(todo.priority)">
+  <div *ngIf="!isEditing; else editTemplate" class="todo-content">
+    <input
+      type="checkbox"
+      [checked]="todo.completed"
+      (change)="toggle.emit(todo.id)"
+      class="todo-checkbox"
+    >
+    <span class="todo-text" [class.completed]="todo.completed">
+      {{ todo.text }}
+    </span>
+    <span class="todo-priority" [class]="getPriorityClass(todo.priority)">
+      {{ todo.priority }}
+    </span>
+    <div class="todo-actions">
+      <button (click)="startEditing()" class="action-btn edit">✏️</button>
+      <button (click)="delete.emit(todo.id)" class="action-btn delete">🗑️</button>
+    </div>
+  </div>
+
+  <ng-template #editTemplate>
+    <div class="edit-mode">
+      <input
+        [(ngModel)]="editText"
+        (keypress.enter)="saveEdit()"
+        (keypress.escape)="cancelEdit()"
+        class="edit-input"
+      >
+      <button (click)="saveEdit()" class="action-btn save">✅</button>
+      <button (click)="cancelEdit()" class="action-btn cancel">❌</button>
+    </div>
+  </ng-template>
+</div>
